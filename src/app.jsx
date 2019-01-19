@@ -3,33 +3,269 @@ import ReactDOM from 'react-dom'
 
 import './index.scss'
 
-/* 组件中的事件 */
-class Component extends React.Component{
+/* 子组件传给父组件值 */
+class Father extends React.Component{
     constructor (props) {
-        super(props);
+        super(props)
         this.state = {
-            age: 18
+            bgColor: 'red'
         }
-        this.addAge = this.addAge.bind(this)
     }
-    addAge () {
+    onChangeColor (color) {
         this.setState({
-            age: this.state.age + 1
+            bgColor: color
         })
     }
     render () {
         return (
+            <div style={{background: this.state.bgColor}}>
+                <h1>我是爸爸</h1>
+                <Child changeColor={(color) => {this.onChangeColor(color)}}/>
+            </div>
+        )
+    }
+}
+class Child extends React.Component{
+    constructor (props) {
+        super(props)
+    }
+    changeColors (props) {
+        this.props.changeColor('blue')
+    }
+    render () {
+        return (
             <div>
-                <h1>i am {this.state.age}</h1>
-                <button onClick={this.addAge}>过年了</button>
+                <h1>我是孩子哦</h1>
+                <button onClick={(e) => this.changeColors(e)}>点击换我爸爸的颜色</button>
             </div>
         )
     }
 }
 ReactDOM.render(
-    <Component />,
+    <Father />,
     document.getElementById('app')
 )
+/* end 子组件传给父组件值 */
+
+
+/* 容器组件中嵌套组件 通过props的children获取所有传值内容 */
+// class Component extends React.Component{
+//     constructor (props) {
+//         super(props);
+//         this.state = {
+//             age: 18
+//         }
+//     }
+//     changeValue (e) {
+//         this.setState({
+//             age: e.target.value
+//         })
+//     }
+//     render () {
+//         return (
+//             <div>
+//                 <h1>i am {this.state.age} years old</h1>
+//                 <input type="text" onChange={(e) => {this.changeValue(e)}} />过年了
+//             </div>
+//         )
+//     }
+// }
+// class Title extends React.Component {
+//     constructor (props) {
+//         super(props)
+//     }
+//     render () {
+//         return <h1>{this.props.children}</h1>
+//     }
+// }
+// class App extends React.Component {
+//     render () {
+//         return (
+//             <div>
+//                 <Title>
+//                     <span>i am so hungrey</span>
+//                     <a href="">link</a>
+//                 </Title>
+//                 <Component />
+//             </div>
+//         )
+//     }
+// }
+// ReactDOM.render(
+//     <App />,
+//     document.getElementById('app')
+// )
+/* end 容器组件中嵌套组件 */
+
+
+/* 容器组件中嵌套组件 */
+// class Component extends React.Component{
+//     constructor (props) {
+//         super(props);
+//         this.state = {
+//             age: 18
+//         }
+//     }
+//     changeValue (e) {
+//         this.setState({
+//             age: e.target.value
+//         })
+//     }
+//     render () {
+//         return (
+//             <div>
+//                 <h1>i am {this.state.age} years old</h1>
+//                 <input type="text" onChange={(e) => {this.changeValue(e)}} />过年了
+//             </div>
+//         )
+//     }
+// }
+// class Title extends React.Component {
+//     constructor (props) {
+//         super(props)
+//     }
+//     render () {
+//         return <h1>{this.props.title}</h1>
+//     }
+// }
+// class App extends React.Component {
+//     render () {
+//         return (
+//             <div>
+//                 <Title title="apppppp"/>
+//                 <Component />
+//             </div>
+//         )
+//     }
+// }
+// ReactDOM.render(
+//     <App />,
+//     document.getElementById('app')
+// )
+/* end 容器组件中嵌套组件 */
+
+
+/* 组件中嵌套组件 */
+// class Component extends React.Component{
+//     constructor (props) {
+//         super(props);
+//         this.state = {
+//             age: 18
+//         }
+//     }
+//     changeValue (e) {
+//         this.setState({
+//             age: e.target.value
+//         })
+//     }
+//     render () {
+//         return (
+//             <div>
+//                 <h1>i am {this.state.age} years old</h1>
+//                 <input type="text" onChange={(e) => {this.changeValue(e)}} />过年了
+//             </div>
+//         )
+//     }
+// }
+// class App extends React.Component {
+//     render () {
+//         return (
+//             <div>
+//                 <h1>aopp</h1>
+//                 <Component />
+//             </div>
+//         )
+//     }
+// }
+// ReactDOM.render(
+//     <App />,
+//     document.getElementById('app')
+// )
+/* end 组件中嵌套组件 */
+
+/* 组件中的input输入事件 */
+// class Component extends React.Component{
+//     constructor (props) {
+//         super(props);
+//         this.state = {
+//             age: 18
+//         }
+//     }
+//     changeValue (e) {
+//         this.setState({
+//             age: e.target.value
+//         })
+//     }
+//     render () {
+//         return (
+//             <div>
+//                 <h1>i am {this.state.age} years old</h1>
+//                 <input type="text" onChange={(e) => {this.changeValue(e)}} />过年了
+//             </div>
+//         )
+//     }
+// }
+// ReactDOM.render(
+//     <Component />,
+//     document.getElementById('app')
+// )
+/* end 组件中的input输入事件 */
+
+/* 组件中的事件 方法二 */
+// class Component extends React.Component{
+//     constructor (props) {
+//         super(props);
+//         this.state = {
+//             age: 18
+//         }
+//     }
+//     addAge () {
+//         this.setState({
+//             age: this.state.age + 1
+//         })
+//     }
+//     render () {
+//         return (
+//             <div>
+//                 <h1>i am {this.state.age} years old</h1>
+//                 <button onClick={(e) => {this.addAge(e)}}>过年了</button>
+//             </div>
+//         )
+//     }
+// }
+// ReactDOM.render(
+//     <Component />,
+//     document.getElementById('app')
+// )
+/* end 组件中的事件 方法二 */
+
+/* 组件中的事件 方法一 */
+// class Component extends React.Component{
+//     constructor (props) {
+//         super(props);
+//         this.state = {
+//             age: 18
+//         }
+//         this.addAge = this.addAge.bind(this)
+//     }
+//     addAge () {
+//         this.setState({
+//             age: this.state.age + 1
+//         })
+//     }
+//     render () {
+//         return (
+//             <div>
+//                 <h1>i am {this.state.age}</h1>
+//                 <button onClick={this.addAge}>过年了</button>
+//             </div>
+//         )
+//     }
+// }
+// ReactDOM.render(
+//     <Component />,
+//     document.getElementById('app')
+// )
 /* 结束 组件中的事件 */
 
 /* 组件中的父组件传参 */
