@@ -1,6 +1,17 @@
-body {
-    background: url('./pig.jpg');
+
+body{
     #app{
-        font-size: 100px;
+        .jsx{
+            color: blue;
+        }
     }
 }
+
+// 第一次环境安装代码
+// body {
+//     background: url('./pig.jpg');
+//     #app{
+//         font-size: 100px;
+//     }
+// }
+// end 第一次环境安装代码
